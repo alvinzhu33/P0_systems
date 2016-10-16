@@ -1,42 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "basic.h"
 
 song_node *table[26];
 
-int arist_where(struct song_node *song){
-  return (int)song->artist[0] - 97;
+int artist_where(song_node *song){
+    int i = strcmp((song->artist), "a");
+    if(i == 100){
+        return 0;
+    }
+    return i;
 }
-struct song_node * insert_front(struct song_node *song){
-  return 0;
+song_node * insert_front(char name[256], char artist[256]){
+    song_node *song = (song_node *)malloc(sizeof(song_node));
+    strcpy(song->name, name);
+    strcpy(song->artist, artist);
+    song->next=table[artist_where(song)];
+    return song;
 };
-struct song_node * insert_order(struct song_node *song){
-  return 0;
+song_node * insert_order(song_node *song){
+    return 0;
 };
-struct song_node * print_struct(){
-  return 0;
+song_node * print_struct(){
+    int i;
+    for(i=0; i<26; i++){
+        printf("%c", i+97);
+        printf("%s\n", " songs:");
+        while(table[i]){}
+    }
+    return 0;
 };
-struct song_node * find_name(struct song_node *song){
-  return 0;
+song_node * find_name(song_node *song){
+    return 0;
 };
-struct song_node * find_artist(struct song_node *arist){
-  return 0;
+song_node * find_artist(song_node *arist){
+    return 0;
 };
-struct song_node * find_random(){
-  return 0;
+song_node * find_random(){
+    return 0;
 };
-struct song_node * remove_song(){
-  return 0;
+song_node * remove_song(){
+    return 0;
 };
-struct song_node * freeL(){
-  return 0;
+song_node * freeL(){
+    return 0;
 };
 
 int main(){
-  struct song_node *try;
-  try = (struct song_node *)malloc(sizeof(struct song_node));
-  try->name="hello";
-  try->artist="ad";
-  printf("%d\n", artist_where(try));
-  return 0;
+    song_node *try;
+    try = (song_node *)malloc(sizeof(song_node));
+    strcpy(try->name, "hello");
+    strcpy(try->artist, "adele");
+    //printf("%d\n", artist_where(try));
+    print_struct();
+    return 0;
 }
