@@ -4,9 +4,9 @@ typedef struct song_node{
   struct song_node *next;
 } song_node;
 
-song_node * insert_front(char name[256], char artist[256]);
-song_node * insert_order(song_node *song);
-song_node * print_struct();
+song_node * insert_front(song_node *list, char name[256], char artist[256]);
+song_node * insert_order(song_node *list, char name[256], char artist[256]);
+void print_struct(song_node *list);
 song_node * find_name(song_node *song);
 song_node * find_artist(song_node *arist);
 song_node * find_random();

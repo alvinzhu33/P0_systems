@@ -12,24 +12,47 @@ int artist_where(song_node *song){
     }
     return i;
 }
-song_node * insert_front(char name[256], char artist[256]){
+song_node * insert_front(song_node *list, char name[256], char artist[256]){
     song_node *song = (song_node *)malloc(sizeof(song_node));
     strcpy(song->name, name);
     strcpy(song->artist, artist);
-    song->next=table[artist_where(song)];
+    song->next=list;
     return song;
 };
-song_node * insert_order(song_node *song){
-    return 0;
+song_node * insert_order(song_node *list, char name[256], char artist[256]){
+    song_node *song = (song_node *)malloc(sizeof(song_node));
+    strcpy(song->name, name);
+    strcpy(song->artist, artist);
+    song_node *current = list;
+    if(strcmp(artist, list->artist)<0){
+        return insert_front(list, name, artist);
+    }
+    while(current->next){
+        if(strcmp(artist, current->artist)>0 && strcmp(artist, current->next->artist)<0){
+            song->next = current->next;
+            current->next = song;
+            return list;
+        }
+        current = current->next;
+    }
+    current->next = song;
+    return list;
 };
-song_node * print_struct(){
-    int i;
+void print_struct(song_node *list){
+    /*int i;
     for(i=0; i<26; i++){
         printf("%c", i+97);
         printf("%s\n", " songs:");
         while(table[i]){}
     }
-    return 0;
+    return 0;*/
+    printf("%s-%s ", list->name, list->artist);
+    list = list->next;
+    while(list){
+        printf("-> %s-%s ", list->name, list->artist);
+        list = list->next;
+    }
+    printf("\n");
 };
 song_node * find_name(song_node *song){
     return 0;
@@ -50,9 +73,20 @@ song_node * freeL(){
 int main(){
     song_node *try;
     try = (song_node *)malloc(sizeof(song_node));
-    strcpy(try->name, "hello");
-    strcpy(try->artist, "adele");
+    strcpy(try->name, "boom boom pow");
+    strcpy(try->artist, "black eyed peas");
+    print_struct(try);
+    //try = insert_front(try, "red", "tSwift");
+    //try = insert_front(try, "diamon", "rihanna");
+    try = insert_order(try, "true colors", "cyndi lauper");
+    try = insert_order(try, "hello", "adele");
+    try = insert_order(try, "lights", "ellie goulding");
+    try = insert_order(try, "get lucky", "daft punk");
+    print_struct(try);
+    //int i = strcmp("add", "ad");
+
+    /*printf("%d\n", i);
     //printf("%d\n", artist_where(try));
-    print_struct();
+    print_struct();*/
     return 0;
 }
