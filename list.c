@@ -81,12 +81,12 @@ song_node * find_random(song_node *list){
   song_node *index;
   while(index){
     counter++;
-    index->next;
+    index = index->next;
   }
   int ran = rand() % counter;
-  while(counter){
+  while(ran){
     list = list->next;
-    counter--;
+    ran--;
   }
   return list;
 };
@@ -139,6 +139,12 @@ int main(){
   print_struct(find_name(try, "get lucky"));
   print_struct(find_name(try, "trap queen"));
   print_struct(find_name(try, "hello"));
+
+  printf("\nTesting random finds\n");
+  print_struct(find_random(try));
+  print_struct(find_random(try));
+  print_struct(find_random(try));
+  print_struct(find_random(try));
     
   printf("\nTesting delete\n");
   try = remove_song(try, "get lucky");
