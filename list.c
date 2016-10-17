@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "basic.h"
+#include "headers.h"
 
 song_node *table[26];
 
@@ -54,12 +54,12 @@ void print_struct(song_node *list){
     }
     printf("\n");
 };
-song_node * find_name(song_node *list, char name[256]){
+void find_name(song_node *list, char name[256]){
     while(list){
         if(strcmp(list->name, name)==0){
-            return list;
+	  return list;;
         }
-        list->next;
+        list = list->next;
     }
     return 0;
 };
@@ -68,7 +68,7 @@ song_node * find_artist(song_node *list, char artist[256]){
         if(strcmp(list->artist, artist)==0){
             return list;
         }
-        list->next;
+        list = list->next;
     }
     return 0;
 };
@@ -81,7 +81,7 @@ song_node * find_random(song_node *list){
     }
     int ran = rand() % counter;
     while(counter){
-        list->next;
+        list = list->next;
         counter--;
     }
     return list;
@@ -128,10 +128,11 @@ int main(){
     try = remove_song(try, "lights");
     try = remove_song(try, "hello");
     print_struct(try);
-    freeL(try);
-    //print_struct(try);
-    /*printf("%s\n", find_artist(try, "daft punk"));
-    printf("%s\n", find_artist(try, "adele"));
+    //freeL(try);
+
+    printf("\nTesting finds\n");
+    find_artist(try, "daft punk");
+    /*printf("%s\n", find_artist(try, "adele"));
     printf("%s\n", find_artist(try, "ellie goulding"));
     printf("%s\n", find_artist(try, "fetty wap"));*/
 
