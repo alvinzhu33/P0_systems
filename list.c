@@ -4,8 +4,6 @@
 #include <time.h>
 #include "headers.h"
 
-song_node *table[26];
-
 int artist_where(song_node *song){
   int i = strcmp((song->artist), "a");
   if(i == 100){
@@ -84,7 +82,6 @@ song_node * find_random(song_node *list){
     counter++;
     index = index->next;
   }
-  srand(time(NULL));
   int ran = rand() % counter;
   while(ran){
     list = list->next;
@@ -118,8 +115,8 @@ song_node * freeL(song_node *list){
 };
 
 int main(){
-  song_node *try;
-  try = (song_node *)malloc(sizeof(song_node));
+  srand(time(NULL));
+  song_node *try = (song_node *)malloc(sizeof(song_node));
   strcpy(try->name,"boom boom pow");
   strcpy(try->artist, "black eyed peas");
   print_struct(try);
@@ -144,6 +141,8 @@ int main(){
 
   printf("\nTesting random finds\n");
   print_struct(find_random(try));
+  print_struct(find_random(try));
+  print_struct(find_random(try));
 
   printf("\nTesting delete\n");
   try = remove_song(try, "get lucky");
@@ -154,8 +153,5 @@ int main(){
   printf("\nFreeing\n");
   freeL(try);
 
-  /*printf("%d\n", i);
-  //printf("%d\n", artist_where(try));
-  print_struct();*/
   return 0;
 }

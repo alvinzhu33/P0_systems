@@ -4,6 +4,8 @@ typedef struct song_node{
   struct song_node *next;
 } song_node;
 
+song_node *table[26];
+
 song_node * insert_front(song_node *list, char name[256], char artist[256]);
 song_node * insert_order(song_node *list, char name[256], char artist[256]);
 void print_struct(song_node *list);

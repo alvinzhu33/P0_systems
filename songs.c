@@ -1,3 +1,5 @@
+#include "list.c"
+
 //Add songs.
 void add_song(char name[256], char artist[256]);
 //Search for a song.
