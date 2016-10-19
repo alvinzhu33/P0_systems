@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "headers.h"
 
 song_node *table[26];
@@ -78,11 +79,12 @@ song_node * find_artist(song_node *list, char artist[256]){
 };
 song_node * find_random(song_node *list){
   int counter=0;
-  song_node *index;
+  song_node *index=list;
   while(index){
     counter++;
     index = index->next;
   }
+  srand(time(NULL));
   int ran = rand() % counter;
   while(ran){
     list = list->next;
@@ -127,7 +129,7 @@ int main(){
   try = insert_order(try, "lights", "ellie goulding");
   try = insert_order(try, "get lucky", "daft punk");
   print_struct(try);
-  
+
   printf("\nTesting artist finds\n");
   print_struct(find_artist(try, "adele"));
   print_struct(find_artist(try, "ellie goulding"));
@@ -145,13 +147,15 @@ int main(){
   print_struct(find_random(try));
   print_struct(find_random(try));
   print_struct(find_random(try));
-    
+
   printf("\nTesting delete\n");
   try = remove_song(try, "get lucky");
   try = remove_song(try, "lights");
   try = remove_song(try, "hello");
   print_struct(try);
-  //freeL(try);
+
+  printf("\nFreeing\n");
+  freeL(try);
 
   /*printf("%d\n", i);
   //printf("%d\n", artist_where(try));
