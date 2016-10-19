@@ -144,9 +144,6 @@ int main(){
 
   printf("\nTesting random finds\n");
   print_struct(find_random(try));
-  print_struct(find_random(try));
-  print_struct(find_random(try));
-  print_struct(find_random(try));
 
   printf("\nTesting delete\n");
   try = remove_song(try, "get lucky");
