@@ -2,14 +2,14 @@
 
 int artist_where(const char artist[256]){
     char first = artist[0];
-
-    int i = 97;
+    return first - 97;
+    /*int i = 97;
     while(i < 122){
         if(i == first){
             return (i - 97);
         }
         i++;
-    }
+    }*/
 }
 //Add songs.
 void add_song(char name[256], char artist[256]){
@@ -61,9 +61,8 @@ int main(){
     for(clearing; clearing<26; clearing++){
         table[clearing]=0;
     }
-    //printf("%d\n", artist_where("adele"));
     //print_all();
-
+    //table[25]=6;
     printf("\nAdding\n");
     add_song("mamma mia", "abba");
     add_song("dancing queen", "abba");
@@ -72,8 +71,12 @@ int main(){
     add_song("thunderstruck", "ac/dc");
     add_song("alive","pearl jam");
     add_song("even flow","pearl jam");
+    add_song("time","pink floyd");
     add_song("yello ledbetter","pearl jam");
-    add_song("time","pink floyd"); 
+    add_song("spectrum","zedd");
+    add_song("replay", "zendaya");
+    add_song("my baby", "zendaya");
+    add_song("clarity","zedd");
     print_all();
     return 0;
 }
