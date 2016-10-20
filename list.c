@@ -19,10 +19,24 @@ song_node * insert_order(song_node *list, char name[256], char artist[256]){
     song_node *song = (song_node *)malloc(sizeof(song_node));
     make_song(song, name, artist);
     song_node *current = list;
-    if(strcmp(artist, list->artist)<0){
-        return insert_front(list, name, artist);
-    }
     while(current->next){
+        if(strcmp(artist, list->artist)<0){
+            /*if(strcmp(artist, list->artist)==0 && strcmp(name, current->name)>0){
+                song->next = current->next;
+                current->next = song;
+                return list;
+            }
+            song->next = current;
+            return current;*/
+            return insert_front(list, name, artist);
+        }
+        if(strcmp(artist, current->artist)==0 && strcmp(artist, current->next->artist)==0){
+            if(strcmp(name, current->name)>0 && strcmp(name, current->next->name)<0){
+                song->next = current->next;
+                current->next = song;
+                return list;
+            }
+        }
         if(strcmp(artist, current->artist)>0 && strcmp(artist, current->next->artist)<0){
             song->next = current->next;
             current->next = song;

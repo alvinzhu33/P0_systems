@@ -39,8 +39,8 @@ song_node * print_artist(char artist[256]);
 song_node * print_all(){
     int i;
     for(i=0; i<26; i++){
-        printf("%c artists:\n", i+97);
         if(table[i]){
+            printf("%c artists:\n", i+97);
             print_struct(table[i]);
         }
     }
@@ -65,7 +65,15 @@ int main(){
     //print_all();
 
     printf("\nAdding\n");
+    add_song("mamma mia", "abba");
+    add_song("dancing queen", "abba");
     add_song("hello", "adele");
+    add_song("send my love", "adele");
+    add_song("thunderstruck", "ac/dc");
+    add_song("alive","pearl jam");
+    add_song("even flow","pearl jam");
+    add_song("yello ledbetter","pearl jam");
+    add_song("time","pink floyd"); 
     print_all();
     return 0;
 }
