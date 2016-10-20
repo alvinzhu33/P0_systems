@@ -24,7 +24,15 @@ void add_song(char name[256], char artist[256]){
 };
 
 //Search for a song.
-void search_song(char name[256]);
+void search_song(char name[256], char artist[256]){
+    int index = artist_where(artist);
+    printf("= %s - %s ", name, artist);
+    if(! table[index]){
+        printf("| Not Found :'('\n");
+    }else{
+        print_struct(find_name(table[index], name));
+    }
+};
 
 //Search for an artist.
 void search_artist(char artist[256]);
@@ -78,5 +86,11 @@ int main(){
     add_song("my baby", "zendaya");
     add_song("clarity","zedd");
     print_all();
+
+    printf("\nFinding songs:\n");
+    search_song("dancing queen", "abba");
+    search_song("even flow", "pearl jam");
+    search_song("cookie", "blah");
+    search_song("replay", "zendaya");
     return 0;
 }
