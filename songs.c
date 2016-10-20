@@ -3,14 +3,8 @@
 int artist_where(const char artist[256]){
     char first = artist[0];
     return first - 97;
-    /*int i = 97;
-    while(i < 122){
-        if(i == first){
-            return (i - 97);
-        }
-        i++;
-    }*/
 }
+
 //Add songs.
 void add_song(char name[256], char artist[256]){
     int index = artist_where(artist);
@@ -35,7 +29,14 @@ song_node * search_song(char name[256], char artist[256]){
 };
 
 //Search for an artist.
-song_node * search_artist(char artist[256]);
+song_node * search_artist(char artist[256]){
+  int index = artist_where(artist);
+  if(index){
+    return find_artist(table[index], artist);
+  }else{
+    return NULL;
+  }
+};
 
 //Print out all the entries under a certain letter.
 void print_letter(char x);
