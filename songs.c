@@ -20,21 +20,22 @@ void add_song(char name[256], char artist[256]){
 //Search for a song.
 song_node * search_song(char name[256], char artist[256]){
     int index = artist_where(artist);
-    printf("= %s - %s ", name, artist);
+    printf("= %s-%s :", name, artist);
     if(! table[index]){
-        printf("| Not Found :'('\n");
+        printf(" NOT FOUND :'('\n");
     }else{
-        print_struct(find_name(table[index], name));
+        if(find_name(table[index], name)){
+            printf(" %s-%s\n", name, artist);
+            return(find_name(table[index],name));
+        };
     }
 };
 
 //Search for an artist.
 song_node * search_artist(char artist[256]){
   int index = artist_where(artist);
-  if(index){
+  if(table[index]){
     return find_artist(table[index], artist);
-  }else{
-    return NULL;
   }
 };
 
@@ -42,7 +43,14 @@ song_node * search_artist(char artist[256]){
 void print_letter(char x);
 
 //Print out all the songs of a certain artist
-void print_artist(char artist[256]);
+void print_artist(char artist[256]){
+    printf("= %s's songs: ", artist);
+    if(search_artist(artist)){
+        print_struct(search_artist(artist));
+    }else{
+        printf("NO SONGS BY %s\n", artist);
+    }
+};
 
 //Print out the entire library.
 void print_all(){
@@ -53,7 +61,6 @@ void print_all(){
             print_struct(table[i]);
         }
     }
-    return 0;
 };
 
 //Shuffle - print out a series of randomly chosen songs.
@@ -93,5 +100,11 @@ int main(){
     search_song("even flow", "pearl jam");
     search_song("cookie", "blah");
     search_song("replay", "zendaya");
+
+    printf("\nFinding artist:\n");
+    print_artist("ac/dc");
+    print_artist("pearl jam");
+    print_artist("kesha");
+    print_artist("zendaya");
     return 0;
 }
