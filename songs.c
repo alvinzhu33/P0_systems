@@ -15,6 +15,7 @@ int artist_where(const char artist[256]){
 void add_song(char name[256], char artist[256]){
     int index = artist_where(artist);
     if(! table[index]){
+        song_node *song = (song_node *)malloc(sizeof(song_node));
         make_song(song, name, artist);
         table[index]= song;
     }else{
@@ -61,7 +62,9 @@ int main(){
         table[clearing]=0;
     }
     //printf("%d\n", artist_where("adele"));
-    print_all();
+    //print_all();
+
+    printf("\nAdding\n");
     add_song("hello", "adele");
     print_all();
     return 0;
