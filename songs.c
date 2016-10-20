@@ -14,6 +14,10 @@ int artist_where(const char artist[256]){
 //Add songs.
 void add_song(char name[256], char artist[256]){
     int index = artist_where(artist);
+    if(! table[index]){
+        song_node *song = (song_node *)malloc(sizeof(song_node));
+        table[index]= song;
+    }
     table[index] = insert_order(table[index], name, artist);
 };
 
@@ -34,7 +38,7 @@ song_node * print_all(){
     int i;
     for(i=0; i<26; i++){
         printf("%c artists:\n", i+97);
-        while(table[i]){
+        if(table[i]){
             print_struct(table[i]);
         }
     }
