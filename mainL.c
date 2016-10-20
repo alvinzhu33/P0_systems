@@ -3,8 +3,7 @@
 int main(){
   srand(time(NULL));
   song_node *try = (song_node *)malloc(sizeof(song_node));
-  strcpy(try->name,"boom boom pow");
-  strcpy(try->artist, "black eyed peas");
+  make_song(try, "boom boom pow", "black eyed peas");
   printf("Initial test:\n");
   print_struct(try);
 

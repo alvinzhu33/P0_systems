@@ -1,5 +1,5 @@
-songs: mainS.c
-	gcc mainS.c
+songs: songs.c
+	gcc songs.c
 	./a.out
 
 list: mainL.c

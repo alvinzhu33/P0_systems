@@ -1,14 +1,21 @@
 #include "list.c"
 
-int artist_where(song_node *song){
-    int i = strcmp((song->artist), "a");
-    if(i == 100){
-        return 0;
+int artist_where(const char artist[256]){
+    char first = artist[0];
+
+    int i = 97;
+    while(i < 122){
+        if(i == first){
+            return (i - 97);
+        }
+        i++;
     }
-    return i;
 }
 //Add songs.
-void add_song(char name[256], char artist[256]);
+void add_song(char name[256], char artist[256]){
+    int index = artist_where(artist);
+    table[index] = insert_order(table[index], name, artist);
+};
 
 //Search for a song.
 void search_song(char name[256]);
@@ -48,4 +55,9 @@ int main(){
     for(clearing; clearing<26; clearing++){
         table[clearing]=0;
     }
+    //printf("%d\n", artist_where("adele"));
+    print_all();
+    add_song("hello", "adele");
+    print_all();
+    return 0;
 }
