@@ -16,11 +16,11 @@ song_node * remove_song(song_node *list, char name[256]);
 song_node * freeL(song_node *list);
 
 void add_song(char name[256], char artist[256]);
-void search_song(char name[256], char artist[256]);
-void search_artist(char artist[256]);
-song_node * print_letter(char x);
-song_node * print_artist(char artist[256]);
-song_node * print_all();
+song_node * search_song(char name[256], char artist[256]);
+song_node * search_artist(char artist[256]);
+void print_letter(char x);
+void print_artist(char artist[256]);
+void print_all();
 void print_random();
 void delete_song(char name[256]);
 void clear();
