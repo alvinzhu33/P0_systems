@@ -22,5 +22,5 @@ void print_letter(char x);
 void print_artist(char artist[256]);
 void print_all();
 void print_random();
-void delete_song(char name[256]);
+void delete_song(char name[256], char artist[256]);
 void clear();
