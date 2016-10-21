@@ -61,5 +61,7 @@ int main(){
     clear();
     printf("Print all:\n");
     print_all();
+
+    printf("\n***If you want to see tests for the first group of functions, run: make list\n\n");
     return 0;
 }

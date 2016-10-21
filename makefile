@@ -1,5 +1,5 @@
-songs: songs.c
-	gcc songs.c
+songs: main.c
+	gcc main.c
 	./a.out
 
 list: mainL.c
@@ -7,6 +7,5 @@ list: mainL.c
 	./a.out
 
 clean:
-	rm *.c~
-	rm *.h~
+	rm *~
 	rm *.c#
