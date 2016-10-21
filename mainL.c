@@ -39,6 +39,6 @@ int main(){
   printf("\nFreeing\n");
   freeL(try);
 
-  printf("\n***If you want to see tests for the second group of functions, run: make list\n\n");
+  printf("\n***If you want to see tests for the second group of functions, run: make songs\n\n");
   return 0;
 }
