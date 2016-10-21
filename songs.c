@@ -75,8 +75,43 @@ void print_all(){
     }
 };
 
+void * print_first(song_node * list){
+    printf("%s-%s", list->name, list->artist);
+}
+
 //Shuffle - print out a series of randomly chosen songs.
-void shuffle();
+void shuffle(){
+    int artist_count=0;
+    int counter=0;
+    int index[26];
+    while(counter<26){
+        if(table[counter]){
+            index[artist_count]=counter;
+            artist_count++;
+        }
+        counter++;
+    }
+    counter=0;
+
+    int artists_list[artist_count];
+    while(counter<artist_count){
+        artists_list[counter]=index[counter];
+        counter++;
+    }
+
+    counter=0;
+    srand(time(NULL));
+    printf("| ");
+    int which = rand() % artist_count;
+    print_first(find_random(table[artists_list[which]]));
+    while(counter<2){
+        which = rand() % artist_count;
+        printf(" -> ");
+        print_first(find_random(table[artists_list[which]]));
+        counter++;
+    }
+    printf(" |");
+};
 
 //Delete a song
 void delete_song(char name[256], char artist[256]){
@@ -86,9 +121,14 @@ void delete_song(char name[256], char artist[256]){
 
 //Delete all the nodes.
 void clear(){
-    int i;
-    for(i = 0; i<26; i++){
-        table[i]=0;
+    int i=0;
+    while(i<26){
+        if(table[i]){
+            printf("Freeing %c artists... ", i+97);
+            free(table[i]);
+            table[i]=0;
+        }
+        i++;
     }
     printf("DONE REMOVING ALL NODES\n");
 };
@@ -145,6 +185,10 @@ int main(){
     delete_song("yellow ledbetter", "pearl jam");
     delete_song("replay", "zendaya");
     print_all();
+
+    printf("\nShuffling:\n");
+    shuffle();
+    printf("\n");
 
     printf("\nClearing:\n");
     clear();
